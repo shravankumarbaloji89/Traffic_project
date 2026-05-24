@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Traffic Violation Detection System Using AI</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            color:#333;
+        }
+
+        header{
+            background:#0d1b2a;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+
+        header h1{
+            font-size:36px;
+        }
+
+        nav{
+            background:#1b263b;
+            padding:15px;
+            text-align:center;
+        }
+
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+            font-weight:bold;
+        }
+
+        nav a:hover{
+            color:#00b4d8;
+        }
+
+        .container{
+            width:90%;
+            max-width:1000px;
+            margin:auto;
+            padding:40px 0;
+        }
+
+        .card{
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom:30px;
+        }
+
+        h2{
+            margin-bottom:20px;
+            color:#0d1b2a;
+        }
+
+        input[type="file"]{
+            margin-top:15px;
+            margin-bottom:20px;
+        }
+
+        button{
+            background:#0077b6;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:5px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#023e8a;
+        }
+
+        #preview{
+            width:100%;
+            max-height:400px;
+            object-fit:contain;
+            margin-top:20px;
+            border-radius:10px;
+            display:none;
+        }
+
+        #result{
+            margin-top:25px;
+            padding:20px;
+            background:#e9f5ff;
+            border-left:5px solid #0077b6;
+            font-size:20px;
+            font-weight:bold;
+            display:none;
+        }
+
+        .features{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+        }
+
+        .feature-box{
+            background:#ffffff;
+            padding:20px;
+            border-radius:10px;
+            box-shadow:0 4px 8px rgba(0,0,0,0.1);
+            text-align:center;
+        }
+
+        footer{
+            background:#0d1b2a;
+            color:white;
+            text-align:center;
+            padding:20px;
+            margin-top:40px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Traffic Violation Detection System Using AI</h1>
+        <p>AI Based Smart Traffic Monitoring</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Upload</a>
+        <a href="#">Detection</a>
+        <a href="#">Features</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Upload Section -->
+
+        <div class="card">
+
+            <h2>Upload Traffic Image</h2>
+
+            <input type="file" id="imageUpload" accept="image/*">
+
+            <br>
+
+            <button onclick="detectViolation()">
+                Detect Violation
+            </button>
+
+            <img id="preview">
+
+            <div id="result"></div>
+
+        </div>
+
+        <!-- Features Section -->
+
+        <div class="card">
+
+            <h2>System Features</h2>
+
+            <div class="features">
+
+                <div class="feature-box">
+                    <h3>Helmet Detection</h3>
+                    <p>Detect riders without helmets.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Signal Jump Detection</h3>
+                    <p>Identify vehicles crossing signals.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Triple Riding</h3>
+                    <p>Detect triple riding on bikes.</p>
+                </div>
+
+                <div class="feature-box">
+                    <h3>Number Plate Recognition</h3>
+                    <p>Read vehicle number plates automatically.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>
+            © 2026 Traffic Violation Detection System Using AI
+        </p>
+    </footer>
+
+    <script>
+
+        const imageUpload =
+            document.getElementById("imageUpload");
+
+        const preview =
+            document.getElementById("preview");
+
+        const result =
+            document.getElementById("result");
+
+        // Image Preview
+
+        imageUpload.addEventListener("change", function(){
+
+            const file = this.files[0];
+
+            if(file){
+
+                const reader = new FileReader();
+
+                reader.onload = function(e){
+
+                    preview.src = e.target.result;
+                    preview.style.display = "block";
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // AI Detection Simulation
+
+        function detectViolation(){
+
+            if(!imageUpload.files[0]){
+
+                alert("Please upload an image first.");
+                return;
+            }
+
+            const violations = [
+
+                "Helmet Violation Detected",
+                "Signal Jump Detected",
+                "Triple Riding Detected",
+                "Over Speeding Detected",
+                "No Violation Found"
+            ];
+
+            const randomViolation =
+                violations[Math.floor(Math.random()
+                * violations.length)];
+
+            result.style.display = "block";
+
+            result.innerHTML =
+                "AI Detection Result: " + randomViolation;
+        }
+
+    </script>
+
+</body>
+</html>
